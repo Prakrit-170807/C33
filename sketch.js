@@ -8,7 +8,6 @@ var box1, pig1;
 var backgroundImg,platform;
 
 var log6,chain,chain2
-var image_loder_is_a_Loder=('bg.png','bg2.jpg')
 var GameMode= "shoot"
 
 // var GameMode=[1,2,3,4]z
@@ -33,7 +32,7 @@ var GameMode= "shoot"
 
 
 function preload() {
-   back_is_a_good_ground()
+   backgroundImg=loadImage('bg.png')
 }
 
 function setup(){
@@ -42,7 +41,7 @@ function setup(){
     world = engine.world;
 
 
-    ground = new Ground(width/2,height,width,20);
+    ground = new Ground(width/2,height-120,width,20);
     platform = new Ground(150, 630, 300, 170);
 
     box1 = new Box(700,320,70,70);
@@ -73,10 +72,8 @@ function setup(){
 
 }
 
-function draw(){
-    if(backgroundImg){
-        background(backgroundImg);
-    }   
+function draw(){  
+    background(backgroundImg) 
     Engine.update(engine);
 
     box1.display();
@@ -100,9 +97,10 @@ function draw(){
 
     platform.display();
 
-    if(GameMode=="shoot"&&bird.body.position.x<400){
-        Matter.Body.setAngle(bird.body,0)
-    }
+    // if(GameMode=="shoot"&&bird.body.position.x<400){
+    //     Matter.Body.setAngle(bird.body,0)
+    //     bird.veiw1=255
+    // }
     
 
 }
@@ -128,18 +126,18 @@ function keyPressed(){
     } 
 }
 
-async function back_is_a_good_ground(){
-    var APIanswer= await fetch("http://worldtimeapi.org/api/timezone/Asia/Kolkata")
-    var APIanswerjson = await APIanswer.json()
-    var Datetime = APIanswerjson.datetime
-    console.log(Datetime)
-    var hour = Datetime.slice(11,13)
-    console.log(hour)
-    if(hour>=06&&hour<=17){
-       image_loder_is_a_Loder='bg.png' 
-    }
-    else{
-        image_loder_is_a_Loder='bg2.jpg' 
-    }
-    backgroundImg=loadImage(image_loder_is_a_Loder)
-}
+// async function back_is_a_good_ground(){
+//     var APIanswer= await fetch("http://worldtimeapi.org/api/timezone/Asia/Kolkata")
+//     var APIanswerjson = await APIanswer.json()
+//     var Datetime = APIanswerjson.datetime
+//     console.log(Datetime)
+//     var hour = Datetime.slice(11,13)
+//     console.log(hour)
+//     if(hour>=06&&hour<=17){
+//        image_loder_is_a_Loder='bg.png' 
+//     }
+//     else{
+//         image_loder_is_a_Loder='bg2.jpg' 
+//     }
+//     backgroundImg=loadImage(image_loder_is_a_Loder)
+// }

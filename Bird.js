@@ -4,16 +4,27 @@ class Bird extends BaseClass {
     this.image = loadImage("bird.png");
     this.image1 = loadImage("smoke.png")
     this.dotted = []
+    this.veiw1=255
   }
 
   display() {
     super.display();
-    if(this.body.velocity.x>10&&this.body.position.x>120){
+    if(this.body.position.x>=50&&this.body.velocity.x>=2){
       var point = [this.body.position.x,this.body.position.y]
       this.dotted.push(point)  
-    }  
+    } 
+    if(GameMode=='shoot'){
+      this.dotted=[]
+      this.veiw1=255
+      Matter.Body.setAngle(bird.body,0)
+    }
     for(var i=10;i<this.dotted.length;i++){
-        image(this.image1,this.dotted[i][0],this.dotted[i][1])
+      push()
+      World.remove(world,this.dotted)
+      this.veiw1=this.veiw1-1
+      tint(255,this.veiw1)
+      image(this.image1,this.dotted[i][0],this.dotted[i][1])
+      pop()
     }
   }
 }
